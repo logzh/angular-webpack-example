@@ -7,7 +7,7 @@ var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 
 module.exports = {
     entry: {
-        entry: './public/js/index.js'
+        app: './public/js/app.js'
     },
     output: {
         path: path.join(process.cwd(), 'public/build/'),
