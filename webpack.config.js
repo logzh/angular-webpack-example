@@ -16,7 +16,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js'],
-        root:path.join(process.cwd(), 'public/')
+        root:path.join(__dirname, 'public/')
     },
     module: {
         loaders: [
