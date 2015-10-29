@@ -47,13 +47,13 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
             $stateProvider.state('center.nickname', {
                 url: 'nick',
                 template: require('../views/center/nickname.html'),
-                controller: ['$scope', '$state', 'User', nicknameCtrl]
+                controller: nicknameCtrl
             });
 
             $stateProvider.state('center.sex', {
                 url: 'sex',
                 template: require('../views/center/sex.html'),
-                controller: ['$scope', '$state', 'User', sexCtrl]
+                controller: sexCtrl
             });
         }]
 );
