@@ -18,6 +18,16 @@ module.exports = {
         extensions: ['', '.js'],
         root:path.join(process.cwd(), 'public/js/')
     },
+    module: {
+        loaders: [
+            {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                loader: "raw"
+            }
+        ]
+    },
+    devtool: 'source-map',
     plugins: [
         commonsPlugin
     ]

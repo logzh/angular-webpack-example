@@ -38,7 +38,7 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
 
             $stateProvider.state('center.nav', {
                 url: '',
-                templateUrl: '/views/center/user.html',
+                template: require('../views/center/user.html'),
                 controller: ['$scope', '$state', 'User', function ($scope, $state, User) {
 
                 }]
@@ -46,13 +46,13 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
 
             $stateProvider.state('center.nickname', {
                 url: 'nick',
-                templateUrl: '/views/center/nickname.html',
+                template: require('../views/center/nickname.html'),
                 controller: ['$scope', '$state', 'User', nicknameCtrl]
             });
 
             $stateProvider.state('center.sex', {
                 url: 'sex',
-                templateUrl: '/views/center/sex.html',
+                template: require('../views/center/sex.html'),
                 controller: ['$scope', '$state', 'User', sexCtrl]
             });
         }]
