@@ -2,12 +2,28 @@ var angular = require('angular');
 require('angular-ui-router');
 require('./serviceModule');
 
+var Mock = require('./mock.angular');
+
 var nicknameCtrl = require('./nicknameCtrl');
 var sexCtrl = require('./sexCtrl');
 
 var appModule = angular.module('appModule', [
     'ui.router', 'serviceModule'
 ]);
+Mock.mock('./user', {
+    'name'	   : '[@name](/user/name)()',
+    'age|1-100': 100,
+    'sex'	   : '[@color](/user/color)'
+});
+Mock.mockjax(appModule);
+
+
+
+//Mock.mock('./user', {
+//    'list|1-10': [{
+//        'id|+1': 1
+//    }]
+//});
 
 appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
         function ($httpProvider, $stateProvider, $urlRouterProvider) {

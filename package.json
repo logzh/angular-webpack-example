@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "webpack-dev-server --devtool eval --progress --hot --colors --content-base app"
   },
   "dependencies": {
     "angular": "^1.4.7",
@@ -20,6 +20,9 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "webpack": "^1.12.2"
+    "mockjs": "^0.1.10",
+    "open-browser-webpack-plugin": "0.0.1",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.14.0"
   }
 }
