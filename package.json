@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "start2": "webpack-dev-server --devtool eval --progress --hot --colors --content-base app"
+    "start": "node server.js"
   },
   "dependencies": {
     "angular": "^1.4.7",
