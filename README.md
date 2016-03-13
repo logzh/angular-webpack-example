@@ -16,7 +16,7 @@ npm install webpack-dev-server webpack gulp -g
 二、进入当前当前目录，安装node模块
 
 ```bash
- npm install
+ npm i
 ```
 
 三、开发阶段
