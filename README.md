@@ -54,7 +54,7 @@ npm run product //正式环境 或 gulp product
 
 关于前端代码发布部署，参考文章 [大公司里怎样开发和部署前端代码](https://github.com/fouber/blog/issues/6)
 
-首先发布 *./product/static* 目录下的资源到cdn指定目录下，因为文件带有md5戳，可以直接覆盖上一个版本发布的所有的资源文件（ *unzip -o static,zip* ）
+首先发布 *./product/static* 目录下的资源到cdn指定目录下，因为文件带有md5戳，可以直接覆盖上一个版本发布的所有的资源文件（ *unzip -oq static.zip* ）
 
 确定资源文件发布成功后，发布前端代码到网站目录中。
 
