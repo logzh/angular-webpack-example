@@ -1,6 +1,5 @@
-.idea/*
-/node_modules
-/public/build
-/public/dist
-
-stats.json
+node_modules
+.idea
+development/
+product/
+npm-debug.log
