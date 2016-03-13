@@ -1,6 +1,6 @@
 ## 使用
 
-一、 实现要求系统安装Nodejs，安装完成后，内网开发需要修改Nodejs配置。
+一、 实现要求系统安装Nodejs，安装完成后，内网开发需要修改Nodejs配置（外网开发忽略）。
 
 ```
 npm config set proxy http://dev-proxy.oa.com:8080
@@ -8,9 +8,9 @@ npm config set https-proxy http://dev-proxy.oa.com:8080
 npm config set registry https://registry.npmjs.com/
 ```
 
-系统全局安装webpack-dev-server、webpack、gulp、fis3
+系统全局安装webpack-dev-server、webpack、gulp
 ```
-npm install webpack-dev-server webpack gulp fis3 -g
+npm install webpack-dev-server webpack gulp -g
 ```
 
 二、进入当前当前目录，安装node模块
