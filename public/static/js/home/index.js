@@ -1,13 +1,14 @@
 var angular = require('angular');
 require('angular-ui-router');
-require('../service');
+require('../apiModule');
 var $ = require('jquery');
 
 var nicknameCtrl = require('./nicknameCtrl');
+var nickDialogCtrl = require('./dialogCtrl');
 var sexCtrl = require('./sexCtrl');
 
 var appModule = angular.module('appModule', [
-  'ui.router', 'service'
+  'ui.router', 'apiModule'
 ]);
 
 appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
@@ -48,6 +49,12 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
       url: 'nick',
       template: require('../../views/home/nickname.html'),
       controller: nicknameCtrl
+    });
+    
+    $stateProvider.state('center.nickname.dialog', {
+      url: '/dialog',
+      template: require('../../views/home/dialog.html'),
+      controller: nickDialogCtrl
     });
 
     $stateProvider.state('center.sex', {

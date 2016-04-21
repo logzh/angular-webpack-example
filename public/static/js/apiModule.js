@@ -1,8 +1,8 @@
 var angular = require('angular');
 
-var service = angular.module('service', []);
+var apiModule = angular.module('apiModule', []);
 
-service.factory('User', ['$http', function($http) {
+apiModule.factory('User', ['$http', function($http) {
   return {
     fetch: function() {
       return $http.get('/static/mock/user.json').then(function(res) {
