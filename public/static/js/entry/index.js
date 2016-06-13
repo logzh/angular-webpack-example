@@ -34,6 +34,9 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
       },
       controller: ['$scope', 'res', function($scope, res) {
         $scope.user = res.user;
+        $scope.music = {
+          src:'/static/data/APM_APMC_0102_05001.mp3'
+        };
       }]
     });
 
