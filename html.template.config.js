@@ -10,12 +10,6 @@ var dev = [
   },
   {
     title: 'Angular-Webpack',
-    filename: 'multiple-named-views.html',
-    template: 'template/multiple-named-views.html',
-    chunks: ['vendor', 'multiple-named-views']
-  },
-  {
-    title: 'Angular-Webpack',
     filename: 'example.html',
     template: 'template/example.html',
     chunks: ['vendor', 'example']
