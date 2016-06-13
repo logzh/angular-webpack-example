@@ -64,6 +64,17 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
     }
 
   });
+
+  $stateProvider.state('about.test', {
+    url: '/test',
+    views: {
+
+      // the main template will be placed here (relatively named)
+      '': {template: require('../../views/example/partial-about-test.html')}
+
+    }
+
+  });
 });
 
 

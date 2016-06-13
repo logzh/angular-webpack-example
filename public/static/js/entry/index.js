@@ -26,7 +26,7 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
     $stateProvider.state('center', {
       abstract: true,
       url: '/',
-      template: '<div ui-view></div>',
+      template: require('../../views/home/base.html'),
       resolve: {
         res: ['User', function(User) {
           return User.fetch();
