@@ -3,13 +3,13 @@ var proTemplate = 'template/pro.html';
 
 var dev = [
   {
-    title: 'Angular-Webpack',
+    title: 'example',
     filename: 'index.html',
     template: 'template/dev.html',
     chunks: ['vendor', 'index']
   },
   {
-    title: 'Angular-Webpack',
+    title: 'example',
     filename: 'example.html',
     template: 'template/example.html',
     chunks: ['vendor', 'example']
