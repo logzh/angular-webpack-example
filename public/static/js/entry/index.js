@@ -3,9 +3,9 @@ require('angular-ui-router');
 require('../apiModule');
 var $ = require('jquery');
 
-var nicknameCtrl = require('./nicknameCtrl');
-var nickDialogCtrl = require('./dialogCtrl');
-var sexCtrl = require('./sexCtrl');
+var nicknameCtrl = require('../ctrl/nickname');
+var nickDialogCtrl = require('../ctrl/dialog');
+var sexCtrl = require('../ctrl/sex');
 
 var appModule = angular.module('appModule', [
   'ui.router', 'apiModule'
@@ -39,7 +39,7 @@ appModule.config(['$httpProvider', '$stateProvider', '$urlRouterProvider',
 
     $stateProvider.state('center.nav', {
       url: '',
-      template: require('../../views/home/index.html'),
+      template: require('../../views/home/nav.html'),
       controller: ['$scope', '$state', 'User', function($scope, $state, User) {
 
       }]
