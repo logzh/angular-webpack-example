@@ -26,13 +26,11 @@ npm install webpack-dev-server webpack gulp -g
 ```bash
  npm start
 ```
+2、启动后台服务
 
-2、关于JS代码检查，采用ESlint
-
-运行一下命令、然后在当前目录中打开lint-report.html文件查看代码检查结果。如果需要修改某些代码检查规则，参考[logzh/.eslintrc.js](https://gist.github.com/logzh/65c22a7d4211bee1289e)，修改当前目录下.eslintrc规则。
-
-```
-gulp lint
+```bash
+ cd server 
+ node app.js
 ```
 
 三、构建 webpack + gulp
