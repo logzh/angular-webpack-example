@@ -12,7 +12,7 @@ var config = {
   output: {
     path: __dirname + '/development',
     publicPath: '/',
-    filename: 'static/js/[name].[chunkhash:8].js'
+    filename: 'static/js/[name].[chunkhash].js'
   },
   resolve: {
     extensions: ['', '.js', '.jsx'], // 配置可以不书写的后缀名
@@ -43,7 +43,7 @@ var config = {
   },
   plugins: [
     commonsPlugin,
-    new ExtractTextPlugin('static/css/[name].[chunkhash:8].css')
+    new ExtractTextPlugin('static/css/[name].[chunkhash].css')
   ]
 };
 
