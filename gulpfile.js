@@ -1,13 +1,9 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
-var eslint = require('gulp-eslint');
-var reporter = require('eslint-html-reporter');
 var fs = require('fs');
 var path = require('path');
-
-var srcJsDir = './public/static/js/';
 
 var webpack = require('webpack');
 
@@ -26,15 +22,6 @@ gulp.task('webpackDevelop', function(callback) {
     if (err) throw new gutil.PluginError('webpack', err);
     callback();
   });
-});
-
-gulp.task('lint', function() {
-  return gulp.src([srcJsDir + '**/*.js'])
-      .pipe(eslint())
-      .pipe(eslint.format(reporter, function(results) {
-            fs.writeFileSync(path.join(__dirname, 'lint-report.html'), results);
-          })
-      );
 });
 
 gulp.task('minifyJs', ['webpack'], function() {
@@ -59,11 +46,6 @@ gulp.task('minifycssDev', ['webpackDevelop'], function() {
       .pipe(gulp.dest('./development'));
 });
 
-gulp.task('copyJson', function() {
-  return gulp.src('./public/static/mock/**/*.json')
-      .pipe(gulp.dest('./development/static/mock/'));
-});
-
 gulp.task('product', ['minifycssPro', 'minifyJs']);
 
-gulp.task('default', ['minifycssDev', 'copyJson']);
+gulp.task('default', ['minifycssDev']);
