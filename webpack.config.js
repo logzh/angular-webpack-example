@@ -3,7 +3,6 @@ var path = require('path');
 var entry = require('./entry.js');
 var templateConfig = require('./html.template.config.js').dev;
 
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[hash:8].js');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -26,7 +25,7 @@ var config = {
     stats: 'error-only',
     port: 8080,
     proxy: { // 请求后端数据
-      '/server/*': 'http://localhost:8081'
+      '/server/*': 'http://localhost:3000'
     }
   },
   entry: entry,
@@ -42,14 +41,14 @@ var config = {
   module: {
     loaders: [
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
         loader: 'url?limit=8192'// 小于8kb的图片转化为base64，css中其他的图片地址会被体会为打包的地址，此处用到了publicPath
       },
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')},
       {
         test: /\.html$/,
         exclude: /node_modules/,
-        loader: 'raw'
+        loader: 'html'
       }
     ]
   },
@@ -57,8 +56,7 @@ var config = {
   plugins: [
     commonsPlugin,
     new ExtractTextPlugin('static/css/[name].[chunkhash:8].css'),
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({url: 'http://localhost:8080'})
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 

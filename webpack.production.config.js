@@ -19,17 +19,22 @@ var config = {
     root: path.join(__dirname, 'public/') // 配置绝对路径，alias、entry中会使用
   },
   module: {
-    loaders: [
-      {
-        test: /\.js[x]?$/,
-        include: path.resolve(__dirname, 'public'),
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      }, {
-        test: /\.(jpg|png|gif)$/,
-        loader: 'url?limit=1024&name=static/images/[hash].[ext]'
-      },
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')}
+    loaders: [{
+      test: /\.js[x]?$/,
+      include: path.resolve(__dirname, 'public'),
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    }, {
+      test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
+      loader: 'url?limit=1024&name=static/images/[hash].[ext]'
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
+    }, {
+      test: /\.html$/,
+      exclude: /node_modules/,
+      loader: 'html'
+    }
     ]
   },
   plugins: [

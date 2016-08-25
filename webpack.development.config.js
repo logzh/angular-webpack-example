@@ -26,10 +26,19 @@ var config = {
         exclude: /node_modules/,
         loader: 'babel-loader'
       }, {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
         loader: 'url?limit=1024&name=static/images/[hash].[ext]' // 小于8kb的图片转化为base64，css中其他的图片地址会被体会为打包的地址，此处用到了publicPath
+      }, 
+      {
+        test: /\.css$/, 
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
       },
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')}
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        loader: 'html'
+      }
+        
     ]
   },
   plugins: [
