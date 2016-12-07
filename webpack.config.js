@@ -1,21 +1,17 @@
 var webpack = require('webpack');
-var path = require('path');
-var entry = require('./entry.js');
-var templateConfig = require('./html.template.config.js').dev;
-
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[hash:8].js');
-
+var merge = require('webpack-merge');
+var base = require('./webpack.base.config');
+var templateConfig = require('./html.webpack.config.js').dev;
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-for (var prop in entry) {
-  if (entry.hasOwnProperty(prop)) {
-    entry[prop].unshift('webpack-dev-server/client?http://localhost:8080');
-    entry[prop].unshift('webpack/hot/dev-server');
-  }
+for (prop in base.entry) {
+  base.entry[prop].unshift('webpack-dev-server/client?http://localhost:8080');
+  base.entry[prop].unshift('webpack/hot/dev-server');
 }
 
-var config = {
+var config = merge(base, {
   devServer: {
     historyApiFallback: true,
     hot: true,
@@ -24,41 +20,21 @@ var config = {
     contentBase: './public',
     stats: 'error-only',
     port: 8080,
-    proxy: { // 请求后端数据
-      '/server/*': 'http://localhost:3000'
+    proxy: {//请求后端数据
+      '/server/*': 'http://localhost:3000/'
     }
   },
-  entry: entry,
   output: {
-    path: __dirname + '/build',
     publicPath: '/',
-    filename: 'static/js/[name].[chunkhash:8].js'
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'], // 配置可以不书写的后缀名
-    root: path.join(__dirname, 'public/') // 配置绝对路径，alias、entry中会使用
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-        loader: 'url?limit=8192'// 小于8kb的图片转化为base64，css中其他的图片地址会被体会为打包的地址，此处用到了publicPath
-      },
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')},
-      {
-        test: /\.html$/,
-        exclude: /node_modules/,
-        loader: 'html'
-      }
-    ]
+    filename: 'static/js/[name].js'
   },
   devtool: '#source-map',
   plugins: [
     commonsPlugin,
-    new ExtractTextPlugin('static/css/[name].[chunkhash:8].css'),
+    new ExtractTextPlugin('static/css/[name].css'),
     new webpack.HotModuleReplacementPlugin()
   ]
-};
+});
 
 for (var i = 0; i < templateConfig.length; i++) {
   config.plugins.push(new HtmlWebpackPlugin(templateConfig[i]));

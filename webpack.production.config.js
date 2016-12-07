@@ -1,41 +1,16 @@
 var webpack = require('webpack');
+var merge = require('webpack-merge');
 var path = require('path');
-var entry = require('./entry.js');
-var templateConfig = require('./html.template.config.js').pro;
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[chunkhash].js');
-
+var base = require('./webpack.base.config');
+var templateConfig = require('./html.webpack.config.js').pro;
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('vendor', 'static/js/vendor.[hash].js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var config = {
-  entry: entry,
+var config = merge(base, {
   output: {
-    path: __dirname + '/product',
-    publicPath: 'http://cdn.abc.com/',
-    filename: 'static/js/[name].[chunkhash].js'
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'], // 配置可以不书写的后缀名
-    root: path.join(__dirname, 'public/') // 配置绝对路径，alias、entry中会使用
-  },
-  module: {
-    loaders: [{
-      test: /\.js[x]?$/,
-      include: path.resolve(__dirname, 'public'),
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-      loader: 'url?limit=1024&name=static/images/[chunkhash].[ext]'
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap')
-    }, {
-      test: /\.html$/,
-      exclude: /node_modules/,
-      loader: 'html'
-    }
-    ]
+    filename: 'static/js/[name].[chunkhash].js',
+    publicPath: 'http://cdn.com/' // 静态资源地址
   },
   plugins: [
     commonsPlugin,
@@ -43,9 +18,13 @@ var config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
-    commonsPlugin
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ]
-};
+});
 
 for (var i = 0; i < templateConfig.length; i++) {
   config.plugins.push(new HtmlWebpackPlugin(templateConfig[i]));
